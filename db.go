@@ -9,7 +9,7 @@ import (
 )
 
 type (
-	// coreKV对外提供的功能集合
+	// miniKV对外提供的功能集合
 	CoreAPI interface {
 		Set(data *codec.Entry) error
 		Get(key []byte) (*codec.Entry, error)
