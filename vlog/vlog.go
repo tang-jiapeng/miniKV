@@ -2,7 +2,6 @@ package vlog
 
 import (
 	"miniKV/utils"
-	"miniKV/utils/codec"
 )
 
 type Options struct {
@@ -37,11 +36,11 @@ func (v *VLog) StartGC() {
 }
 
 // Set
-func (v *VLog) Set(entry *codec.Entry) error {
+func (v *VLog) Set(entry *utils.Entry) error {
 	return nil
 }
 
-func (v *VLog) Get(entry *codec.Entry) (*codec.Entry, error) {
+func (v *VLog) Get(entry *utils.Entry) (*utils.Entry, error) {
 	// valuePtr := codec.ValuePtrDecode(entry.Value)
 	return nil, nil
 }

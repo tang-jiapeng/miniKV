@@ -1,6 +1,4 @@
-package iterator
-
-import "miniKV/utils/codec"
+package utils
 
 // 迭代器
 type Iterator interface {
@@ -11,7 +9,7 @@ type Iterator interface {
 	Close() error
 }
 type Item interface {
-	Entry() *codec.Entry
+	Entry() *Entry
 }
 type Options struct {
 	Prefix []byte

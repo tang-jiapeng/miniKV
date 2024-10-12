@@ -3,7 +3,6 @@ package lsm
 import (
 	"miniKV/file"
 	"miniKV/utils"
-	"miniKV/utils/codec"
 )
 
 type levelManager struct {
@@ -22,7 +21,7 @@ func (lh *levelHandler) close() error {
 	return nil
 }
 
-func (lh *levelHandler) Get(key []byte) (*codec.Entry, error) {
+func (lh *levelHandler) Get(key []byte) (*utils.Entry, error) {
 	// 如果是第0层文件则进行特殊处理
 	if lh.levelNum == 0 {
 		// logic...
@@ -76,9 +75,9 @@ func (lm *levelManager) flush(immutable *memTable) error {
 	return nil
 }
 
-func (lm *levelManager) Get(key []byte) (*codec.Entry, error) {
+func (lm *levelManager) Get(key []byte) (*utils.Entry, error) {
 	var (
-		entry *codec.Entry
+		entry *utils.Entry
 		err   error
 	)
 	// L0层查询

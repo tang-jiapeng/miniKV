@@ -1,6 +1,9 @@
 package file
 
-import "miniKV/utils/codec"
+import (
+	"miniKV/utils"
+	"miniKV/utils/codec"
+)
 
 type WalFile struct {
 	f *LogFile
@@ -15,7 +18,7 @@ func (wf *WalFile) Close() error {
 }
 func OpenWalFile(opt *Options) *WalFile { return &WalFile{f: OpenLogFile(opt)} }
 
-func (wf *WalFile) Write(entry *codec.Entry) error {
+func (wf *WalFile) Write(entry *utils.Entry) error {
 	// 落预写日志简单的同步写即可
 	// 序列化为磁盘结构
 	walData := codec.WalCodec(entry)

@@ -2,7 +2,6 @@ package lsm
 
 import (
 	"miniKV/utils"
-	"miniKV/utils/codec"
 )
 
 type LSM struct {
@@ -58,7 +57,7 @@ func (lsm *LSM) StartMerge() {
 	}
 }
 
-func (lsm *LSM) Set(entry *codec.Entry) error {
+func (lsm *LSM) Set(entry *utils.Entry) error {
 	// 检查当前memtable是否写满，是的话创建新的memtable,并将当前内存表写到immutables中
 	// 否则写入当前memtable中
 	if err := lsm.memTable.set(entry); err != nil {
@@ -73,9 +72,9 @@ func (lsm *LSM) Set(entry *codec.Entry) error {
 	return nil
 }
 
-func (lsm *LSM) Get(key []byte) (*codec.Entry, error) {
+func (lsm *LSM) Get(key []byte) (*utils.Entry, error) {
 	var (
-		entry *codec.Entry
+		entry *utils.Entry
 		err   error
 	)
 	// 从内存表中查询,先查活跃表，在查不变表
